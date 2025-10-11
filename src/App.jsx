@@ -16,7 +16,7 @@ useEffect(() => {
       localStorage.setItem("products",JSON.stringify(products));
     },[products]);
     const addProduct =()=> {
-     if(!name||!price) return alert("Hãy nhập đủ  tên sản phẩm và giá!");
+     if(!name||!price) return alert("Hãy nhập đủ tên sản phẩm và giá!");
      const newProduct = {name,price:parseFloat(price)};
      setProducts([... products,newProduct]);
      setName("");
@@ -51,7 +51,7 @@ const deleteProduct =(index)=>{
      <h2>Quản lý sản phẩm</h2>
      <input
      type="text"
-     placeholder="Tển sản phẩm"
+     placeholder="Tên sản phẩm"
      value = {name}
      onChange ={(e) => setName(e.target.value)}
      />
@@ -62,7 +62,7 @@ const deleteProduct =(index)=>{
      onChange={(e)=>setPrice(e.target.value)}
      />
      {editIndex==null?(<button onClick ={addProduct}>Thêm sản phẩm</button>)
-        : (<button onClick ={updatedProduct}>SỬa sản phẩm </button>)
+        : (<button onClick ={updatedProduct}>Sửa sản phẩm </button>)
       }
     <ul>
         {products.map((p, index) => (
