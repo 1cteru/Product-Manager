@@ -14,8 +14,8 @@ body {
 
 /* Hộp chính */
 .container {
-  width: 90%;
-  max-width: 900px;
+  width: 100%;
+  max-width: 9000px;
   background: rgba(119, 146, 196, 0.411);
   border-radius: 20px;
   box-shadow: 0 8px 40px rgba(20, 18, 18, 0.25);
