@@ -1,7 +1,133 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* Tổng thể */
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #68bfce);
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+
+  /* Căn giữa form */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
+/* Hộp chính */
+.container {
+  width: 90%;
+  max-width: 900px;
+  background: rgba(119, 146, 196, 0.411);
+  border-radius: 20px;
+  box-shadow: 0 8px 40px rgba(20, 18, 18, 0.25);
+  padding: 50px 50px;
+  text-align: left;
+  transition: 0.3s ease;
+}
+
+.container:hover {
+  transform: scale(1.01);
+}
+
+/* Tiêu đề */
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #01030e;
+  margin-bottom: 30px;
+}
+
+/* Ô nhập và nút */
+.input-section {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.input-section input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 18px;
+  outline: none;
+  background-color: #e2dfdf;
+  color:#090b16
+}
+
+.input-section input:focus {
+  border-color: #4a90e2;
+  background-color: white;
+}
+
+.input-section button {
+  padding: 12px 20px;
+  background: #4a90e2;
+  color: rgb(243, 232, 232);
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  transition: 0.3s;
+  font-weight: 600;
+}
+
+.input-section button:hover {
+  background: #357ab7;
+}
+
+/* Bảng danh sách */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 18px;
+  font-weight : 600;
+}
+
+th,
+td {
+  padding: 15px 18px;
+  border-bottom: 1px solid #e9dfdf;
+}
+
+th {
+  background: #4a90e2;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+tr:hover {
+  background: #21a9df;
+}
+
+/* Nút sửa / xóa */
+button.edit,
+button.delete {
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: white;
+  font-size: 16px;
+  margin-right: 5px;
+  transition: 0.3s;
+  font-weight: 500;
+}
+
+button.edit {
+  background: #f7a103;
+}
+
+button.edit:hover {
+  background: #e68a00;
+}
+
+button.delete {
+  background: #e74c3c;
+}
+
+button.delete:hover {
+  background: #c0392b;
+}

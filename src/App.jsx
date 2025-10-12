@@ -46,35 +46,57 @@ const deleteProduct =(index)=>{
   };
 
   return (
-    <>
-    <div style={{textAlgin:"center"}}>
-     <h2>Quản lý sản phẩm</h2>
-     <input
-     type="text"
-     placeholder="Tên sản phẩm"
-     value = {name}
-     onChange ={(e) => setName(e.target.value)}
-     />
-     <input
-     type= "number"
-     placeholder= "Giá tiền"
-     value= { price}
-     onChange={(e)=>setPrice(e.target.value)}
-     />
-     {editIndex==null?(<button onClick ={addProduct}>Thêm sản phẩm</button>)
-        : (<button onClick ={updatedProduct}>Sửa sản phẩm </button>)
-      }
-    <ul>
-        {products.map((p, index) => (
-          <li key={index}>
-            {p.name} - {p.price}₫
-            <button onClick={() => editProduct(index)}>Sửa</button>
-            <button onClick={() => deleteProduct(index)}>Xóa</button>
-          </li>
-        ))}
-      </ul>
+ <div className="container">
+      <h1 className="title">Quản lý sản phẩm</h1>
+
+      <div className="input-section">
+        <input
+          type="text"
+          placeholder="Tên sản phẩm"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+        />
+        <input
+          type="number"
+          placeholder="Giá tiền"
+          value={price}
+          onChange={(e) => setPrice(e.target.value)}
+        />
+        {editIndex === null ? (
+          <button onClick={addProduct}>Thêm sản phẩm</button>
+        ) : (
+          <button onClick={updatedProduct}>Sửa sản phẩm</button>
+        )}
       </div>
-    </>
-  )
+
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Hành động</th>
+          </tr>
+        </thead>
+        <tbody>
+          {products.map((p, index) => (
+            <tr key={index}>
+              <td>{index + 1}</td>
+              <td>{p.name}</td>
+              <td>{p.price.toLocaleString()} ₫</td>
+              <td>
+                <button className="edit" onClick={() => editProduct(index)}>
+                  Sửa
+                </button>
+                <button className="delete" onClick={() => deleteProduct(index)}>
+                  Xóa
+                </button>
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 export default ProductManager;
