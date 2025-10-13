@@ -9,7 +9,7 @@ function ProductManager() {
     const [editIndex,setEditIndex]=useState(null);
     const [qty,setQty]=useState("");
     const [code,setCode]=useState("");
-    const [showForm, setShowForm] = useState(false);
+    const [image,setImage]= useState("");
 useEffect(() => {
   const savedProducts = JSON.parse(localStorage.getItem("products")) || [];
   setProducts(savedProducts);
@@ -20,12 +20,13 @@ useEffect(() => {
     },[products]);
     const addProduct =()=> {
      if(!name||!price||!qty||!code) return alert("Hãy nhập đầy đủ thông tin về sản phẩm");
-     const newProduct = {name,price,qty,code :parseFloat(price)};
+     const newProduct = {name,qty,code,image,price :parseFloat(price)};
      setProducts([... products,newProduct]);
      setName("");
      setPrice("");
      setQty("");
      setCode("");
+     setImage("");
   };
 const deleteProduct =(index)=>{
      const updated =[...products];
@@ -33,11 +34,13 @@ const deleteProduct =(index)=>{
      setProducts(updated);
     };
   const editProduct = (index)=>{
+    const p = products[index];
     setEditIndex(index);
-    setName(index);
-    setPrice(index);
-    setQty(index);
-    setCode(index);
+    setName(p.name);
+    setPrice(p.price);
+    setQty(p.qty);
+    setCode(p.code);
+    setImage(p.image);
     
   };
   const updatedProduct =()=>{
@@ -48,6 +51,7 @@ const deleteProduct =(index)=>{
       price: parseFloat(price),
       qty,
       code,
+      image,
     }
     setProducts(updatedproducts);
     setEditIndex(null);
@@ -55,6 +59,7 @@ const deleteProduct =(index)=>{
     setPrice("");
     setQty("");
     setCode("");
+    setImage("");
   };
 
   return (
@@ -86,6 +91,21 @@ const deleteProduct =(index)=>{
         value={code}
         onChange={(e)=>setCode(e.target.value)}
         />
+        <input
+        type="file"
+        accept="image/*"
+        placeholder="Ảnh sản phẩm"
+        onChange={(e)=>{
+          const file= e.target.files[0];
+          if(file){
+            const reader= new FileReader();
+            reader.onloadend = ()=>{
+              setImage(reader.result);
+            };
+            reader.readAsDataURL(file);
+          } 
+        }}
+        />
         {editIndex === null ? (
           <button onClick={addProduct}>Thêm sản phẩm</button>
         ) : (
@@ -101,6 +121,7 @@ const deleteProduct =(index)=>{
             <th>Giá</th>
             <th>Số Lượng</th>
             <th>Mã Sản Phẩm</th>
+            <th>Ảnh Sản Phẩm</th>
             <th>Hành động</th>
           </tr>
         </thead>
@@ -112,6 +133,15 @@ const deleteProduct =(index)=>{
               <td>{p.price.toLocaleString()} vn₫</td>
               <td>{p.qty}</td>
               <td>{p.code}</td>
+              <td>{p.image &&(
+                <img 
+                   src= {p.image}
+                   alt= {p.name}
+                   width="160"
+                   height = "140"
+                   />
+              )}
+                </td>
               <td>
                 <button className="edit" onClick={() => editProduct(index)}>
                   Sửa

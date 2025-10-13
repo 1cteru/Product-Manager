@@ -1,15 +1,17 @@
 /* Tổng thể */
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background: linear-gradient(135deg, #68bfce);
+  background: linear-gradient(135deg, #87c7d3);
   margin: 0;
   padding: 0;
   height: 100vh;
 
   /* Căn giữa form */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height:100vh;
 }
 
 /* Hộp chính */
@@ -18,8 +20,8 @@ body {
   max-width: 9000px;
   background: rgba(119, 146, 196, 0.411);
   border-radius: 20px;
-  box-shadow: 0 8px 40px rgba(20, 18, 18, 0.25);
-  padding: 50px 50px;
+  box-shadow: 0 8px 50px rgba(20, 18, 18, 0.25);
+  padding: 30px 130px;
   text-align: left;
   transition: 0.3s ease;
 }
