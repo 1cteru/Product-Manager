@@ -1,6 +1,8 @@
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 import React, {useState, useEffect} from "react";
 import './App.css'
+import ProductForm from "./Components/ProductForm";
+import ProductTable from "./Components/ProductTable";
 
 function ProductManager() {
     const [products,setProducts]= useState([]);
@@ -63,98 +65,35 @@ const deleteProduct =(index)=>{
   };
 
   return (
- <div className="container">
-      <h1 className="title">Quản Lý Sản Phẩm</h1>
+    <div className="container">
+      <h1 className="title">
+        <i className="fa-utility fa-semibold fa-house" style={{ marginRight: "10px", color: "#23359cff" }}></i>
+        Quản Lý Sản Phẩm
+      </h1>
 
-      <div className="input-section">
-        <input
-          type="text"
-          placeholder="Tên Sản Phẩm"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="number"
-          placeholder="Giá Tiền"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
-        />
-        <input
-        type= "number"
-        placeholder="Số Lượng"
-        value={qty}
-        onChange={(e)=>setQty(e.target.value)}
-        />
-        <input
-        type= "text"
-        placeholder="Mã Sản Phẩm"
-        value={code}
-        onChange={(e)=>setCode(e.target.value)}
-        />
-        <input
-        type="file"
-        accept="image/*"
-        placeholder="Ảnh sản phẩm"
-        onChange={(e)=>{
-          const file= e.target.files[0];
-          if(file){
-            const reader= new FileReader();
-            reader.onloadend = ()=>{
-              setImage(reader.result);
-            };
-            reader.readAsDataURL(file);
-          } 
-        }}
-        />
-        {editIndex === null ? (
-          <button onClick={addProduct}>Thêm sản phẩm</button>
-        ) : (
-          <button onClick={updatedProduct}>Sửa sản phẩm</button>
-        )}
-      </div>
+      <ProductForm
+                name={name}
+                setName={setName}
+                price={price}
+                setPrice={setPrice}
+                qty={qty}
+                setQty={setQty}
+                code={code}
+                setCode={setCode}
+                image={image}
+                setImage={setImage}
+                addProduct={addProduct}
+                updatedProduct={updatedProduct}
+                editIndex={editIndex}
+            />
 
-      <table>
-        <thead>
-          <tr>
-            <th>STT</th>
-            <th>Tên sản phẩm</th>
-            <th>Giá</th>
-            <th>Số Lượng</th>
-            <th>Mã Sản Phẩm</th>
-            <th>Ảnh Sản Phẩm</th>
-            <th>Hành động</th>
-          </tr>
-        </thead>
-        <tbody>
-          {products.map((p, index) => (
-            <tr key={index}>
-              <td>{index + 1}</td>
-              <td>{p.name}</td>
-              <td>{p.price.toLocaleString()} vn₫</td>
-              <td>{p.qty}</td>
-              <td>{p.code}</td>
-              <td>{p.image &&(
-                <img 
-                   src= {p.image}
-                   alt= {p.name}
-                   width="160"
-                   height = "140"
-                   />
-              )}
-                </td>
-              <td>
-                <button className="edit" onClick={() => editProduct(index)}>
-                  Sửa
-                </button>
-                <button className="delete" onClick={() => deleteProduct(index)}>
-                  Xóa
-                </button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  );
+            <ProductTable
+                products={products}
+                editProduct={editProduct}
+                deleteProduct={deleteProduct}
+            />
+        </div>
+    );
 }
+
 export default ProductManager;
